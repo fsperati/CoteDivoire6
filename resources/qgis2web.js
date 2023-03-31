@@ -88,17 +88,14 @@ var map = new ol.Map({
     overlays: [overlayPopup],
     layers: layersList,
     view: new ol.View({
-        extent: [-503867.884952, 745931.345407, -281344.459025, 1109932.400370], maxZoom: 28, minZoom: 1
+        extent: [-492629.721380, 841795.330666, -183507.918459, 1083975.453454], maxZoom: 28, minZoom: 1
     })
 });
 
 var layerSwitcher = new ol.control.LayerSwitcher({tipLabel: "Layers"});
 map.addControl(layerSwitcher);
-layerSwitcher.hidePanel = function() {};
-layerSwitcher.showPanel();
 
-
-map.getView().fit([-503867.884952, 745931.345407, -281344.459025, 1109932.400370], map.getSize());
+map.getView().fit([-492629.721380, 841795.330666, -183507.918459, 1083975.453454], map.getSize());
 
 var NO_POPUP = 0
 var ALL_FIELDS = 1
@@ -594,6 +591,11 @@ function createMeasureTooltip() {
 }
 
 
+function convertToFeet(length) {
+    feet_length = length * 3.2808;
+    return feet_length
+}
+
 var wgs84Sphere = new ol.Sphere(6378137);
 
 /**
@@ -611,15 +613,15 @@ var formatLength = function(line) {
       var c2 = ol.proj.transform(coordinates[i + 1], sourceProj, 'EPSG:4326');
       length += wgs84Sphere.haversineDistance(c1, c2);
     }
-  var output;
-  if (length > 100) {
-    output = (Math.round(length / 1000 * 100) / 100) +
-        ' ' + 'km';
-  } else {
-    output = (Math.round(length * 100) / 100) +
-        ' ' + 'm';
-  }
-  return output;
+    feet_length = convertToFeet(length)
+
+    var output;
+    if (feet_length > 5280) {
+        output = (Math.round(feet_length / 5280 * 100) / 100) + ' miles';
+    } else {
+        output = (Math.round(feet_length * 100) / 100) + ' ft';
+    }
+    return output;
 };
 
 addInteraction();
