@@ -4,7 +4,7 @@ function categories_RESEAU_ROUTIER_WEB_0(feature, value, size, resolution, label
                        labelFont, labelFill) {
                 switch(value.toString()) {case 'Bitume':
                     return [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(217,29,101,1.0)', lineDash: null, lineCap: 'square', lineJoin: 'bevel', width: 4}),
+        stroke: new ol.style.Stroke({color: 'rgba(156,24,66,1.0)', lineDash: null, lineCap: 'square', lineJoin: 'bevel', width: 4}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement)
     })];

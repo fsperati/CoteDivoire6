@@ -19,7 +19,7 @@ var style_Mission4_Entretien_classique_1 = function(feature, resolution){
         labelText = String("");
     }
     var style = [ new ol.style.Style({
-        stroke: new ol.style.Stroke({color: 'rgba(39,221,60,1.0)', lineDash: null, lineCap: 'square', lineJoin: 'bevel', width: 0}),
+        stroke: new ol.style.Stroke({color: 'rgba(39,221,60,1.0)', lineDash: null, lineCap: 'square', lineJoin: 'bevel', width: 1}),
         text: createTextStyle(feature, resolution, labelText, labelFont,
                               labelFill, placement)
     })];
